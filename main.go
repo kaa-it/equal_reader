@@ -42,7 +42,6 @@ func (er *EReader) Read(b []byte) (int, error) {
 var r = &EReader{0}
 
 func equalRead() {
-
 	var buffer [1000]byte
 	var count int
 	var total int
@@ -53,14 +52,14 @@ func equalRead() {
 		if count == 0 {
 			if err == io.EOF {
 				if total > 0 {
-					fmt.Printf("Read %d", total)
+					fmt.Printf("Read %d", total) // buffer[:total]
 				}
 				break
 			}
 		}
 
 		if count == 1000 {
-			fmt.Println("Read 1000")
+			fmt.Println("Read 1000") // buffer[:]
 			count = 0
 			continue
 		}
@@ -68,7 +67,7 @@ func equalRead() {
 		total = total + count
 
 		if total == 1000 {
-			fmt.Println("Read 1000")
+			fmt.Println("Read 1000") // buffer[:]
 			total = 0
 			continue
 		}
